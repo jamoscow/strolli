@@ -19,7 +19,7 @@ function App() {
   const [activeRoute, setActiveRoute] = useState<NapRoute | null>(null)
   const [selectedSpot, setSelectedSpot] = useState<Spot | null>(null)
   const [napDurationFilter, setNapDurationFilter] = useState<number | null>(null)
-  const [showOnboarding, setShowOnboarding] = useState(() => !localStorage.getItem('strolli-onboarded'))
+  const [showOnboarding, setShowOnboarding] = useState(true)
   const { isRouteFavorite, isSpotFavorite, toggleRoute, toggleSpot } = useFavorites()
 
   const neighborhood = neighborhoods.find(n => n.id === selectedNeighborhood)!
