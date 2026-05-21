@@ -11,7 +11,9 @@ function loadFavorites(): Favorites {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (stored) return JSON.parse(stored)
-  } catch {}
+  } catch {
+    // Corrupted localStorage — fall through to default
+  }
   return { routes: [], spots: [] }
 }
 

@@ -61,6 +61,7 @@ export default function Map({ neighborhood, spots, activeRoute, onSpotClick }: M
     return () => {
       map.current?.remove()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Update center when neighborhood changes
@@ -71,7 +72,7 @@ export default function Map({ neighborhood, spots, activeRoute, onSpotClick }: M
       zoom: neighborhood.zoom,
       duration: 1200,
     })
-  }, [neighborhood])
+  }, [neighborhood.center, neighborhood.zoom])
 
   // Render spot markers
   useEffect(() => {
