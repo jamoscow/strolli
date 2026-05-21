@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@import "mapbox-gl/dist/mapbox-gl.css";
+
+@theme {
+  --color-cream: #FDFBF7;
+  --color-sage: #4A7C6F;
+  --color-sage-light: #6B9E8F;
+  --color-sage-dark: #3A6359;
+  --color-terracotta: #E8845C;
+  --color-terracotta-light: #F0A080;
+  --color-charcoal: #2C2C2C;
+  --color-muted: #9B9B9B;
+  --color-muted-light: #E8E4DE;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Satoshi', 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-cream text-charcoal font-sans antialiased;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100dvh;
+  }
+
+  #root {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Mapbox overrides for brand consistency */
+.mapboxgl-ctrl-attrib {
+  font-size: 10px !important;
+  opacity: 0.6;
+}
+
+.mapboxgl-popup-content {
+  @apply rounded-xl shadow-lg p-4 font-sans;
+}
