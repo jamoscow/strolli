@@ -54,6 +54,7 @@ export const routes: NapRoute[] = [
     elevationGain: 45,
     noiseLevel: 'quiet',
     shadeCoverage: 'full',
+    tip: 'Tested with a 4-month-old, smooth the whole way',
   },
   {
     id: 'fg-dekalb-23',
@@ -127,6 +128,7 @@ export const routes: NapRoute[] = [
     elevationGain: 5,
     noiseLevel: 'quiet',
     shadeCoverage: 'partial',
+    tip: 'Best in morning shade — baby fell asleep by block two',
   },
   {
     id: 'fg-south-portland-29',
@@ -167,6 +169,7 @@ export const routes: NapRoute[] = [
     elevationGain: 10,
     noiseLevel: 'quiet',
     shadeCoverage: 'partial',
+    tip: 'Our go-to for the afternoon nap — never fails',
   },
   {
     id: 'fg-clinton-hill-47',
@@ -400,6 +403,7 @@ export const routes: NapRoute[] = [
     elevationGain: 20,
     noiseLevel: 'quiet',
     shadeCoverage: 'partial',
+    tip: 'The gentle downhill motion is like magic for fussy babies',
   },
   {
     id: 'ps-inner-loop-35',

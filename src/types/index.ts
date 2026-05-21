@@ -43,6 +43,7 @@ export interface NapRoute {
   elevationGain?: number // feet
   noiseLevel: 'quiet' | 'moderate' | 'busy'
   shadeCoverage: 'full' | 'partial' | 'minimal'
+  tip?: string
 }
 
 export interface NeighborhoodInfo {

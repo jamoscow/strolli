@@ -5,6 +5,7 @@ import SidePanel from './components/SidePanel'
 import NeighborhoodPicker from './components/NeighborhoodPicker'
 import NaploopPanel from './components/NaploopPanel'
 import ExplorePanel from './components/ExplorePanel'
+import Onboarding from './components/Onboarding'
 import { neighborhoods } from './data/neighborhoods'
 import { spots } from './data/spots'
 import { useFavorites } from './hooks/useFavorites'
@@ -17,6 +18,8 @@ function App() {
   const [activeTab, setActiveTab] = useState<Tab>('naploop')
   const [activeRoute, setActiveRoute] = useState<NapRoute | null>(null)
   const [selectedSpot, setSelectedSpot] = useState<Spot | null>(null)
+  const [napDurationFilter, setNapDurationFilter] = useState<number | null>(null)
+  const [showOnboarding, setShowOnboarding] = useState(() => !localStorage.getItem('strolli-onboarded'))
   const { isRouteFavorite, isSpotFavorite, toggleRoute, toggleSpot } = useFavorites()
 
   const neighborhood = neighborhoods.find(n => n.id === selectedNeighborhood)!
@@ -27,10 +30,20 @@ function App() {
     setActiveTab('explore')
   }, [])
 
+  const handleRouteClick = useCallback((route: NapRoute) => {
+    setActiveRoute(prev => prev?.id === route.id ? null : route)
+    setActiveTab('naploop')
+  }, [])
+
   const handleNeighborhoodChange = (id: Neighborhood) => {
     setSelectedNeighborhood(id)
     setActiveRoute(null)
     setSelectedSpot(null)
+  }
+
+  const handleOnboardingComplete = (duration: number) => {
+    setNapDurationFilter(duration)
+    setShowOnboarding(false)
   }
 
   const panelContent = (
@@ -41,6 +54,7 @@ function App() {
           <span className="text-sage-dark">Strolli</span>
         </h1>
         <p className="text-sm text-muted mt-1">Brooklyn stroller walks for napping kids</p>
+        <p className="text-xs text-muted mt-0.5">Curated by Fort Greene parents</p>
       </div>
 
       {/* Neighborhood Picker */}
@@ -63,7 +77,7 @@ function App() {
             }
           `}
         >
-          Naploop
+          Nap Routes
         </button>
         <button
           onClick={() => setActiveTab('explore')}
@@ -75,7 +89,7 @@ function App() {
             }
           `}
         >
-          Explore
+          Places
         </button>
       </div>
 
@@ -87,6 +101,8 @@ function App() {
           activeRoute={activeRoute}
           isRouteFavorite={isRouteFavorite}
           toggleRouteFavorite={toggleRoute}
+          napDurationFilter={napDurationFilter}
+          onNapDurationChange={setNapDurationFilter}
         />
       ) : (
         <ExplorePanel
@@ -102,6 +118,8 @@ function App() {
 
   return (
     <div className="flex h-full">
+      {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} />}
+
       {/* Desktop: Side Panel */}
       <SidePanel>{panelContent}</SidePanel>
 
@@ -112,6 +130,8 @@ function App() {
           spots={neighborhoodSpots}
           activeRoute={activeRoute}
           onSpotClick={handleSpotClick}
+          onRouteClick={handleRouteClick}
+          selectedNeighborhood={selectedNeighborhood}
         />
       </div>
 
