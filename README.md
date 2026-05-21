@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# Strolli
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Brooklyn stroller walks for napping kids.
 
-Currently, two official plugins are available:
+**Live:** https://jamoscow.github.io/strolli/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What is this?
 
-## React Compiler
+Strolli helps parents in Brooklyn find the perfect stroller route for their baby's nap window. Pick how long your baby needs to sleep, and get curated walking routes that follow real streets — optimized for smooth sidewalks, flat terrain, shade, and low traffic noise.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Also discover family-friendly spots: parks, playgrounds, cafes, restaurants, and picnic areas — all rated for stroller accessibility.
 
-## Expanding the ESLint configuration
+## Neighborhoods
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Fort Greene** — fully covered with 7 routes and 14 spots
+- **Park Slope** — 3 routes and 6 spots
+- Cobble Hill, Carroll Gardens, Brooklyn Heights, DUMBO — coming soon
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Nap Routes** — curated loops and point-to-point walks filtered by nap duration (15–90 min)
+- **Surface & elevation info** — know if a route is flat, smooth, hilly, or mixed before you go
+- **Interactive map** — all routes visible, tap to select, geolocation to find the closest start
+- **Places** — parks, playgrounds, cafes, restaurants, picnic spots filtered by category
+- **Favorites** — save routes and spots (stored locally, no account needed)
+- **Mobile-first** — designed for one-handed use while pushing a stroller
+- **Parent tips** — real notes from parents who've walked these routes
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech stack
+
+- React + TypeScript
+- Vite (static build, hosted on GitHub Pages)
+- Mapbox GL JS (map rendering + route display)
+- Tailwind CSS (styling)
+- Framer Motion (animations)
+
+## Development
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Create a `.env` file with your Mapbox token:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+VITE_MAPBOX_TOKEN=your_token_here
+```
+
+## Deployment
+
+Pushes to `main` auto-deploy via GitHub Actions to GitHub Pages.
+
+## Contributing
+
+This is a prototype. If you're a Brooklyn parent with route suggestions, spot recommendations, or feedback — open an issue.
