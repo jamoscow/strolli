@@ -6,11 +6,13 @@ interface NaploopPanelProps {
   neighborhood: Neighborhood
   onRouteSelect: (route: NapRoute | null) => void
   activeRoute: NapRoute | null
+  isRouteFavorite: (id: string) => boolean
+  toggleRouteFavorite: (id: string) => void
 }
 
 const durationOptions = [20, 30, 45, 60, 90]
 
-export default function NaploopPanel({ neighborhood, onRouteSelect, activeRoute }: NaploopPanelProps) {
+export default function NaploopPanel({ neighborhood, onRouteSelect, activeRoute, isRouteFavorite, toggleRouteFavorite }: NaploopPanelProps) {
   const [selectedDuration, setSelectedDuration] = useState<number | null>(null)
 
   const filteredRoutes = routes.filter(r => {
@@ -64,9 +66,18 @@ export default function NaploopPanel({ neighborhood, onRouteSelect, activeRoute 
             >
               <div className="flex items-start justify-between mb-1">
                 <h4 className="font-semibold text-charcoal">{route.name}</h4>
-                <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-muted-light text-muted">
-                  {route.type === 'loop' ? '↻ Loop' : '→ A to B'}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span
+                    role="button"
+                    onClick={(e) => { e.stopPropagation(); toggleRouteFavorite(route.id) }}
+                    className={`text-base ${isRouteFavorite(route.id) ? 'text-terracotta' : 'text-muted-light hover:text-terracotta-light'}`}
+                  >
+                    {isRouteFavorite(route.id) ? '♥' : '♡'}
+                  </span>
+                  <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-muted-light text-muted">
+                    {route.type === 'loop' ? '↻ Loop' : '→ A to B'}
+                  </span>
+                </div>
               </div>
               <p className="text-sm text-muted mb-2">{route.description}</p>
               <div className="flex gap-3 text-xs text-muted">

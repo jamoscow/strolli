@@ -6,6 +6,8 @@ interface ExplorePanelProps {
   neighborhood: Neighborhood
   onSpotSelect: (spot: Spot) => void
   selectedSpot: Spot | null
+  isSpotFavorite: (id: string) => boolean
+  toggleSpotFavorite: (id: string) => void
 }
 
 const categories: { id: SpotCategory | 'all'; label: string }[] = [
@@ -17,7 +19,7 @@ const categories: { id: SpotCategory | 'all'; label: string }[] = [
   { id: 'picnic', label: 'Picnic Spots' },
 ]
 
-export default function ExplorePanel({ neighborhood, onSpotSelect, selectedSpot }: ExplorePanelProps) {
+export default function ExplorePanel({ neighborhood, onSpotSelect, selectedSpot, isSpotFavorite, toggleSpotFavorite }: ExplorePanelProps) {
   const [activeCategory, setActiveCategory] = useState<SpotCategory | 'all'>('all')
 
   const filteredSpots = spots.filter(s => {
@@ -69,9 +71,18 @@ export default function ExplorePanel({ neighborhood, onSpotSelect, selectedSpot 
             >
               <div className="flex items-start justify-between mb-1">
                 <h4 className="font-semibold text-charcoal">{spot.name}</h4>
-                <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-muted-light text-muted capitalize">
-                  {spot.category}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span
+                    role="button"
+                    onClick={(e) => { e.stopPropagation(); toggleSpotFavorite(spot.id) }}
+                    className={`text-base ${isSpotFavorite(spot.id) ? 'text-terracotta' : 'text-muted-light hover:text-terracotta-light'}`}
+                  >
+                    {isSpotFavorite(spot.id) ? '♥' : '♡'}
+                  </span>
+                  <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-muted-light text-muted capitalize">
+                    {spot.category}
+                  </span>
+                </div>
               </div>
               <p className="text-sm text-muted mb-2">{spot.description}</p>
               <div className="flex gap-1.5 flex-wrap">

@@ -7,6 +7,7 @@ import NaploopPanel from './components/NaploopPanel'
 import ExplorePanel from './components/ExplorePanel'
 import { neighborhoods } from './data/neighborhoods'
 import { spots } from './data/spots'
+import { useFavorites } from './hooks/useFavorites'
 import type { Neighborhood, NapRoute, Spot } from './types'
 
 type Tab = 'naploop' | 'explore'
@@ -16,6 +17,7 @@ function App() {
   const [activeTab, setActiveTab] = useState<Tab>('naploop')
   const [activeRoute, setActiveRoute] = useState<NapRoute | null>(null)
   const [selectedSpot, setSelectedSpot] = useState<Spot | null>(null)
+  const { isRouteFavorite, isSpotFavorite, toggleRoute, toggleSpot } = useFavorites()
 
   const neighborhood = neighborhoods.find(n => n.id === selectedNeighborhood)!
   const neighborhoodSpots = spots.filter(s => s.neighborhood === selectedNeighborhood)
@@ -81,12 +83,16 @@ function App() {
           neighborhood={selectedNeighborhood}
           onRouteSelect={setActiveRoute}
           activeRoute={activeRoute}
+          isRouteFavorite={isRouteFavorite}
+          toggleRouteFavorite={toggleRoute}
         />
       ) : (
         <ExplorePanel
           neighborhood={selectedNeighborhood}
           onSpotSelect={setSelectedSpot}
           selectedSpot={selectedSpot}
+          isSpotFavorite={isSpotFavorite}
+          toggleSpotFavorite={toggleSpot}
         />
       )}
     </>

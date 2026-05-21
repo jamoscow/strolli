@@ -96,12 +96,12 @@ export default function Map({ neighborhood, spots, activeRoute, onSpotClick }: M
         align-items: center;
         justify-content: center;
         font-size: 14px;
-        transition: transform 0.2s;
       `
       el.textContent = categoryEmoji[spot.category]
-      el.addEventListener('mouseenter', () => { el.style.transform = 'scale(1.2)' })
-      el.addEventListener('mouseleave', () => { el.style.transform = 'scale(1)' })
-      el.addEventListener('click', () => onSpotClick(spot))
+      el.addEventListener('click', (e) => {
+        e.stopPropagation()
+        onSpotClick(spot)
+      })
 
       const marker = new mapboxgl.Marker(el)
         .setLngLat(spot.coordinates)
