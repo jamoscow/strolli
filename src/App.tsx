@@ -37,7 +37,9 @@ function App() {
     <>
       {/* Logo / Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-charcoal tracking-tight">Strolli</h1>
+        <h1 className="text-2xl font-bold tracking-tight">
+          <span className="text-sage-dark">Strolli</span>
+        </h1>
         <p className="text-sm text-muted mt-1">Brooklyn stroller walks for napping kids</p>
       </div>
 
@@ -50,13 +52,13 @@ function App() {
       </div>
 
       {/* Tab Switcher */}
-      <div className="flex gap-1 p-1 bg-muted-light rounded-xl mb-5">
+      <div className="flex gap-1 p-1 bg-cream-dark rounded-xl mb-5">
         <button
           onClick={() => setActiveTab('naploop')}
           className={`
-            flex-1 py-2 px-4 rounded-lg text-sm font-semibold transition-all
+            flex-1 py-2.5 px-4 rounded-lg text-sm font-semibold transition-all
             ${activeTab === 'naploop'
-              ? 'bg-white text-charcoal shadow-sm'
+              ? 'bg-sage text-white shadow-sm'
               : 'text-muted hover:text-charcoal'
             }
           `}
@@ -66,9 +68,9 @@ function App() {
         <button
           onClick={() => setActiveTab('explore')}
           className={`
-            flex-1 py-2 px-4 rounded-lg text-sm font-semibold transition-all
+            flex-1 py-2.5 px-4 rounded-lg text-sm font-semibold transition-all
             ${activeTab === 'explore'
-              ? 'bg-white text-charcoal shadow-sm'
+              ? 'bg-sage text-white shadow-sm'
               : 'text-muted hover:text-charcoal'
             }
           `}

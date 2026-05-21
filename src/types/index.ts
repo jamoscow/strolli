@@ -35,6 +35,8 @@ export interface NapRoute {
   durationMinutes: number
   distanceMiles: number
   type: 'loop' | 'point-to-point'
+  surface: 'smooth' | 'mixed' | 'rough'
+  elevation: 'flat' | 'gentle' | 'hilly'
   coordinates: [number, number][] // polyline points
   description: string
   tags: string[]

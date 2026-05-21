@@ -6,7 +6,7 @@ interface SidePanelProps {
 
 export default function SidePanel({ children }: SidePanelProps) {
   return (
-    <aside className="hidden md:flex md:flex-col w-[380px] lg:w-[420px] h-full bg-cream border-r border-muted-light overflow-y-auto">
+    <aside className="hidden md:flex md:flex-col w-[380px] lg:w-[420px] h-full bg-panel-bg border-r border-muted-light/60 overflow-y-auto shadow-sm">
       <div className="p-6">
         {children}
       </div>

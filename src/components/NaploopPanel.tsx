@@ -27,7 +27,7 @@ export default function NaploopPanel({ neighborhood, onRouteSelect, activeRoute,
     <div className="space-y-4">
       <div>
         <h3 className="text-sm font-semibold text-muted uppercase tracking-wide mb-2">
-          Wake Window
+          Nap Window
         </h3>
         <div className="flex gap-2 flex-wrap">
           {durationOptions.map(d => (
@@ -70,7 +70,7 @@ export default function NaploopPanel({ neighborhood, onRouteSelect, activeRoute,
                   <span
                     role="button"
                     onClick={(e) => { e.stopPropagation(); toggleRouteFavorite(route.id) }}
-                    className={`text-base ${isRouteFavorite(route.id) ? 'text-terracotta' : 'text-muted-light hover:text-terracotta-light'}`}
+                    className={`text-lg leading-none ${isRouteFavorite(route.id) ? 'text-terracotta' : 'text-muted hover:text-terracotta-light'}`}
                   >
                     {isRouteFavorite(route.id) ? '♥' : '♡'}
                   </span>
@@ -80,16 +80,21 @@ export default function NaploopPanel({ neighborhood, onRouteSelect, activeRoute,
                 </div>
               </div>
               <p className="text-sm text-muted mb-2">{route.description}</p>
-              <div className="flex gap-3 text-xs text-muted">
-                <span>{route.durationMinutes} min</span>
+              <div className="flex gap-3 text-xs text-muted flex-wrap">
+                <span className="font-medium text-charcoal">{route.durationMinutes} min</span>
                 <span>{route.distanceMiles} mi</span>
+                <span className={route.elevation === 'flat' ? 'text-sage font-medium' : 'text-muted'}>
+                  {route.elevation}
+                </span>
+                <span className={route.surface === 'smooth' ? 'text-sage' : 'text-terracotta'}>
+                  {route.surface} surface
+                </span>
                 <span className={
                   route.noiseLevel === 'quiet' ? 'text-sage' :
                   route.noiseLevel === 'moderate' ? 'text-terracotta' : 'text-red-400'
                 }>
                   {route.noiseLevel}
                 </span>
-                <span>shade: {route.shadeCoverage}</span>
               </div>
               <div className="flex gap-1.5 mt-2 flex-wrap">
                 {route.tags.map(tag => (

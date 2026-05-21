@@ -75,7 +75,7 @@ export default function ExplorePanel({ neighborhood, onSpotSelect, selectedSpot,
                   <span
                     role="button"
                     onClick={(e) => { e.stopPropagation(); toggleSpotFavorite(spot.id) }}
-                    className={`text-base ${isSpotFavorite(spot.id) ? 'text-terracotta' : 'text-muted-light hover:text-terracotta-light'}`}
+                    className={`text-lg leading-none ${isSpotFavorite(spot.id) ? 'text-terracotta' : 'text-muted hover:text-terracotta-light'}`}
                   >
                     {isSpotFavorite(spot.id) ? '♥' : '♡'}
                   </span>

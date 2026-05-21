@@ -3,16 +3,18 @@
 
 @theme {
   --color-cream: #FDFBF7;
-  --color-sage: #4A7C6F;
-  --color-sage-light: #6B9E8F;
-  --color-sage-dark: #3A6359;
-  --color-terracotta: #E8845C;
-  --color-terracotta-light: #F0A080;
-  --color-charcoal: #2C2C2C;
-  --color-muted: #9B9B9B;
-  --color-muted-light: #E8E4DE;
+  --color-cream-dark: #F5F0E8;
+  --color-sage: #3D7A6B;
+  --color-sage-light: #5BA693;
+  --color-sage-dark: #2D5C50;
+  --color-terracotta: #E07650;
+  --color-terracotta-light: #F09070;
+  --color-charcoal: #1A1A1A;
+  --color-muted: #7A7A7A;
+  --color-muted-light: #E0DBD3;
+  --color-panel-bg: #FFFFFF;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Satoshi', 'Inter', system-ui, sans-serif;
+  --font-heading: 'Inter', system-ui, sans-serif;
 }
 
 @layer base {
@@ -31,6 +33,7 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
+    font-weight: 700;
   }
 }
 
